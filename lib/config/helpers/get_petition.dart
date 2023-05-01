@@ -13,11 +13,7 @@ final response = await _dio.get('https://yesno.wtf/api');
  
  final petition = PetitionModel.fromJsonMap(response.data);
  
-  return Message(
-    text: petition.answer, 
-    fromWho: FromWho.hers,
-    imageUrl: petition.image
-    );
+  return petition.toMessageEntity();
 }
 
 }

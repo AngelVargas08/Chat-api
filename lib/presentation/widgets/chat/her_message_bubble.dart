@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 
+import '../../../domain/entities/message.dart';
+
 class HerMessageBuble extends StatelessWidget {
-  const HerMessageBuble({super.key});
+
+  final Message message;
+  const HerMessageBuble({super.key, required this.message});
 
   @override
   Widget build(BuildContext context) {
@@ -13,18 +17,18 @@ class HerMessageBuble extends StatelessWidget {
         Container(
           decoration: BoxDecoration(
               color: colors.secondary, borderRadius: BorderRadius.circular(20)),
-          child: const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          child:  Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             child: Text(
-              'Yo tambien',
-              style: TextStyle(fontSize: 15, color: Colors.white),
+              message.text,
+              style: const TextStyle(fontSize: 15, color: Colors.white),
             ),
           ),
         ),
         const SizedBox(
           height: 8,
         ),
-        const _ImageBubble(),
+         _ImageBubble(message: message,),
         const SizedBox(
           height: 8,
         ),
@@ -34,7 +38,8 @@ class HerMessageBuble extends StatelessWidget {
 }
 
 class _ImageBubble extends StatelessWidget {
-  const _ImageBubble({super.key});
+   final Message message;
+  const _ImageBubble({super.key, required this.message});
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +48,7 @@ class _ImageBubble extends StatelessWidget {
     return ClipRRect(
       borderRadius: BorderRadius.circular(20),
       child: Image.network(
-        'https://thumbs.gfycat.com/AliveEthicalHookersealion-size_restricted.gif',
+        message.imageUrl!,
         width: size.width * 0.7,
         height: 200,
         fit: BoxFit.cover,
