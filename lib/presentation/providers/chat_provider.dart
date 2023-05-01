@@ -30,6 +30,9 @@ Future<void> sendMessage(String text)async{
 
 Future<void> herReply()async{
 final herMessage = await getPetition.getAnswer();
+messageList.add(herMessage);
+notifyListeners();
+moveSrollToBottom();
 
 }
 
